@@ -19,8 +19,10 @@ const CarouselContainer = styled.div`
   position: relative;
   width: 100vw;
   height: 100px;
-  background-color: rgba(255, 255, 255, 0.9);
+  // background-color: rgba(0, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.1);
   margin: 5px 0;
+  backdrop-filter: blur(10px); /* Añadir desenfoque en el fondo si se desea */
 `;
 
 // Contenedor de los elementos del carrusel

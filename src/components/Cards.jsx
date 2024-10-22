@@ -8,8 +8,7 @@ import GlobalStyle from './Global'; // Importamos los estilos globales
 const GridContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(calc(50% - 20px), 1fr));
-  gap: 10px;
-  
+  gap: 3px;
   width: calc(100vw);
   position: relative;
 `;
@@ -19,12 +18,11 @@ const Card = styled.div`
   width: 100%;
   position: relative;
   overflow: hidden;
-  cursor: pointer;
   display: flex;
   justify-content: end;
   align-items: end;
   border-radius: 3px;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   z-index: 1;
 
   img {
@@ -33,6 +31,11 @@ const Card = styled.div`
     object-fit: cover;
     filter: grayscale(100%);
     transition: filter 0.5s ease;
+  }
+
+  &:hover {
+    transform: translateY(-5px); /* Efecto de desplazamiento al hacer hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Sombra al pasar el mouse por encima */
   }
 
   &:hover img {
@@ -47,14 +50,14 @@ const Card = styled.div`
 `;
 
 const LargeCard = styled(Card)`
-  width: 100%;
   grid-row: span 2;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 `;
 
 const SmallCard = styled(Card)`
   width: 100%;
-  height: 49vh;
+  height: 50vh;
 `;
 
 const Cards = () => {

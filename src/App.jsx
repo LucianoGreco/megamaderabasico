@@ -5,11 +5,16 @@ import Banner from './components/Banner';
 import Carrusel from './components/Carrusel';
 import Cards from './components/Cards';
 import Servicio from './components/Cards/Servicio';
-import Disenio from './components/Disenio';
-import Envios from './components/Envios';
-import Herrajes from './components/Herrajes';
-import Melamina from './components/Melamina';
-import Novedades from './components/Novedades';
+import Disenio from './components/Cards/Disenio';
+import Envios from './components/Cards/Envios';
+import Herrajes from './components/Cards/Herrajes';
+import Melamina from './components/Cards/Melamina';
+import Novedades from './components/Cards/Novedades';
+import Footer from './components/Footer';
+import Terminos from './components/Politicas/Terminos'; // Importa el componente
+import Privacidad from './components/Politicas/Privacidad'; // Importa el componente
+import Cookies from './components/Politicas/Cookies'; // Importa el componente
+import { backgroundImage } from './components/data';
 
 const App = () => {
   useEffect(() => {
@@ -41,7 +46,7 @@ const App = () => {
 
   return (
     <Router>
-      <GlobalStyle />
+      <GlobalStyle/>
       <Routes>
         <Route path="/" element={<><Banner /><Carrusel /><Cards /></>} />
         <Route path="/servicio" element={<Servicio />} />
@@ -50,7 +55,12 @@ const App = () => {
         <Route path="/herrajes" element={<Herrajes />} />
         <Route path="/melamina" element={<Melamina />} />
         <Route path="/novedades" element={<Novedades />} />
+        <Route path="/terminos" element={<Terminos />} />
+        <Route path="/privacidad" element={<Privacidad />} />
+        <Route path="/cookies" element={<Cookies />} />
       </Routes>
+      <Carrusel />
+      <Footer />
     </Router>
   );
 };

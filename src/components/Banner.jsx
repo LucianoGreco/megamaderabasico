@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { banners, titulos } from './data'; // Importación de los datos desde data.js
 import { useNavigate } from 'react-router-dom'; // Importa el hook useNavigate
+import { FaChevronLeft, FaChevronRight, FaSearch } from 'react-icons/fa'; // Iconos futuristas, incluye la lupa
 
 // Keyframes para la animación de las imágenes
 const moveRight = keyframes`
@@ -54,7 +55,7 @@ const Layer3 = styled(Layer)`
 
 // Estilos para la imagen
 const Image = styled.img`
-  width: 110vw; /* Ajusta al ancho del contenedor */
+  width: 100%; /* Ajusta al ancho del contenedor */
   height: 100vh;
   object-fit: cover; /* Mantiene la imagen adaptada al contenedor */
   position: absolute;
@@ -62,7 +63,7 @@ const Image = styled.img`
   left: 0;
 `;
 
-// Estilos para los botones de navegación con símbolos negros
+// Estilos para los botones de navegación
 const NavButton = styled.button`
   background: none;
   border: none;
@@ -73,6 +74,55 @@ const NavButton = styled.button`
   z-index: 2;
 
   &:hover {
+    color: white;
+  }
+
+  &:active {
+    color: rgba(80, 80, 80, 0.6); /* Color cuando se retira el mouse */
+  }
+`;
+
+// Estilo para el buscador con el icono de lupa
+const SearchContainer = styled.div`
+backdrop-filter: blur(10px); /* Añadir desenfoque en el fondo si se desea */
+  display: flex;
+  align-items: center;
+  // background-color: rgba(0, 255, 255, 0.1); /* Fondo casi transparente con tono celeste */
+  background-color: rgba(255, 255, 255, 0.1); /* Fondo casi transparente con tono celeste */
+  border: 2px solid rgba(80,80,80, 0.6); /* Borde con tono celeste */
+  border-radius: 25px;
+  padding: 5px 10px;
+  margin-left: 15px;
+  width: 42vw;
+  height: 6vh;
+`;
+
+const SearchIcon = styled(FaSearch)`
+  
+  color:  rgba(0, 0, 0, 0.8);
+  margin-right: 8px;
+  height: 4vh;
+  width: 4vw;
+`;
+
+const SearchInput = styled.input`
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 2rem;
+  padding-left: 8px;
+
+
+  &:hover {
+    // color: rgba(80, 80, 80, 0.6); /* Cambia el color al retirar el mouse */
+    color: white;
+    }
+
+  &:focus {
+    // background-color: rgba(0, 255, 255, 0.2);
+    // color: rgba(80, 80, 80, 0.9);
     color: white;
   }
 `;
@@ -134,12 +184,16 @@ const Banner = () => {
       <Layer3>
         <ButtonContainer>
           <NavButton onClick={() => setCurrentSlide((prevSlide) => (prevSlide - 1 + banners.length) % banners.length)}>
-            &lt;
+            <FaChevronLeft />
           </NavButton>
           {/* El botón principal hereda los estilos globales */}
           <button onClick={handleNavigation}>{titulos[currentSlide]}</button>
+          <SearchContainer>
+            <SearchIcon />
+            <SearchInput type="text" />
+          </SearchContainer>
           <NavButton onClick={() => setCurrentSlide((prevSlide) => (prevSlide + 1) % banners.length)}>
-            &gt;
+            <FaChevronRight />
           </NavButton>
         </ButtonContainer>
       </Layer3>
